@@ -13,7 +13,7 @@ import static io.qameta.allure.SeverityLevel.BLOCKER;
 
 @Feature("Ozon")
 @Story("Поиск")
-@Tags({@Tag("Search"), @Tag("Mobile"), @Tag("Ozon")})
+@Tags({@Tag("Search"), @Tag("Mobile"), @Tag("Ozon"),@Tag("ALL")})
 public class SearchTest extends BaseMobileTest {
     @Test
     @DisplayName("Поиск товара и добавление в корзину")

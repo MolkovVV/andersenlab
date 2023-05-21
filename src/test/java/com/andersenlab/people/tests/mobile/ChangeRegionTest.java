@@ -13,7 +13,7 @@ import static io.qameta.allure.SeverityLevel.BLOCKER;
 
 @Feature("Ozon")
 @Story("Выбор региона")
-@Tags({@Tag("ChangeRegion"), @Tag("Mobile"), @Tag("Ozon")})
+@Tags({@Tag("ChangeRegion"), @Tag("Mobile"), @Tag("Ozon"), @Tag("ALL")})
 public class ChangeRegionTest extends BaseMobileTest{
     @Test
     @DisplayName("Изменение региона доставки")

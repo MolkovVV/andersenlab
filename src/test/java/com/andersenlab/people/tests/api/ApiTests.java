@@ -13,6 +13,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+@Tag("ALL")
 public class ApiTests {
     @BeforeEach
     public void setSpec(){
