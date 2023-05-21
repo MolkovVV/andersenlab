@@ -1,7 +1,5 @@
 package com.andersenlab.people.tests.mobile;
 
-import com.andersenlab.people.config.BaseConfig;
-import com.andersenlab.people.config.PropertiesConfig;
 import com.andersenlab.people.helpers.browserstack.models.BrowserStackSessionInfo;
 import com.andersenlab.people.mobile.driver.BrowserStackAndroidDriver;
 import com.codeborne.selenide.Configuration;

@@ -1,24 +1,23 @@
-package com.andersenlab.people.config;
+package com.andersenlab.people.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static com.andersenlab.people.config.PropertiesConfig.PROP;
 import static com.andersenlab.people.helpers.Attach.*;
 import static com.andersenlab.people.spec.Specification.*;
-import static com.codeborne.selenide.Selenide.closeWebDriver;
 
-public class BaseConfig {
+public class BaseTest {
     @BeforeAll
     public static void addConfig(){
         SelenideLogger.addListener("allure", new AllureSelenide());
         Configuration.baseUrl = PROP.getBaseUrl();
         Configuration.browserSize = PROP.getBrowserSize();
+        Configuration.browserVersion = PROP.getBrowserVersion();
         Configuration.browser = PROP.getBrowserName();
         Configuration.pageLoadStrategy = PROP.getPageLoadStrategy();
         Configuration.headless = PROP.isHeadless();
@@ -28,13 +27,11 @@ public class BaseConfig {
             Configuration.remote = PROP.getRemoteUrl();
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("enableVNC", true);
+            capabilities.setAcceptInsecureCerts(false);
             capabilities.setCapability("enableVideo", true);
             Configuration.browserCapabilities = capabilities;
         }
     }
-
-
-
 
 
     @AfterEach
@@ -46,7 +43,5 @@ public class BaseConfig {
         if (PROP.isRemote()) {
             addVideo();
         }
-
-        closeWebDriver();
     }
 }

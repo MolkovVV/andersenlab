@@ -1,6 +1,6 @@
 package com.andersenlab.people.tests.web;
 
-import com.andersenlab.people.config.BaseConfig;
+import com.andersenlab.people.tests.BaseTest;
 import com.andersenlab.people.pages.MainPage;
 import com.andersenlab.people.pages.Page;
 import com.andersenlab.people.pages.SalesInternshipPage;
@@ -18,7 +18,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
-public class WebTests extends BaseConfig {
+public class WebTests extends BaseTest {
 
     @Test
     @Tags({

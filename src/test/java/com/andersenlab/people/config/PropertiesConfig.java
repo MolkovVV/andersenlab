@@ -2,28 +2,25 @@ package com.andersenlab.people.config;
 
 import org.aeonbits.owner.Config;
 import org.aeonbits.owner.ConfigFactory;
+
 import static org.aeonbits.owner.Config.*;
 
 
 public class PropertiesConfig {
-    private static Class<? extends PropertiesInterface> getPropertySource() {
-        String env = System.getProperty("env");
-        if (env == null || env.equals("null")) {
-            return PropInterfaceTest.class;
-        } else if (env.equals("test")) {
-            return PropInterfaceTest.class;
-        } else {
-            throw new RuntimeException("Invalid value for system property 'env'! Expected one of:[null, 'test']");
-        }
-    }
 
-    public static final PropertiesInterface PROP = ConfigFactory.create(getPropertySource());
+    public static final PropertiesInterface PROP = ConfigFactory.create(PropInterfaceTest.class, System.getProperties());
 
     @LoadPolicy(LoadType.MERGE)
-    @Sources({"system:properties", "classpath:test.properties"})
+    @Config.Sources({
+            "system:properties",
+            "classpath:${env}.properties",
+            "file:~/${env}.properties",
+            "file:./${env}.properties"
+    })
     interface PropInterfaceTest extends PropertiesConfig.PropertiesInterface {
     }
-    public interface PropertiesInterface extends Config{
+
+    public interface PropertiesInterface extends Config {
         @DefaultValue("chrome")
         @Key("webBrowserName")
         String getBrowserName();
@@ -61,7 +58,7 @@ public class PropertiesConfig {
         String getBrowserStackPassword();
 
         @Key("androidVersion")
-        String getAndroidversion();
+        String getAndroidVersion();
 
         @Key("androidDevice")
         String getAndroidDevice();

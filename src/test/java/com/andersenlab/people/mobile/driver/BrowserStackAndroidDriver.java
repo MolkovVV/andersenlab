@@ -21,7 +21,7 @@ public class BrowserStackAndroidDriver implements WebDriverProvider {
         UiAutomator2Options options = new UiAutomator2Options();
         options.merge(capabilities);
         options.setPlatformName("Android");
-        options.setPlatformVersion(PROP.getAndroidversion());
+        options.setPlatformVersion(PROP.getAndroidVersion());
         options.setDeviceName(PROP.getAndroidDevice());
         options.setNewCommandTimeout(Duration.ofSeconds(11));
         options.setFullReset(false);
