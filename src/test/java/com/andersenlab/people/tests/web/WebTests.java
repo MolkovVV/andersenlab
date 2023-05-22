@@ -82,25 +82,25 @@ public class WebTests extends BaseTest {
     @ParameterizedTest(name = "на странице {0}")
     @MethodSource("generateDataCheckSliderArea")
 
-    public void checkSliderArea(Page incomingParam, String name, String expectedText) {
-        if (incomingParam instanceof MainPage){
-            MainPage mainPage = (MainPage) incomingParam;
+    public void checkSliderArea(String pageName, String name, String expectedText) {
+        if (pageName.equals("MainPage")){
+            MainPage mainPage = new MainPage();
             mainPage.open()
                     .checkImageVisibilityInHeroBlock()
                     .checkQuoteTextInHeroBlock(expectedText)
                     .checkQuoteNameInHeroBlock(name);
         }
 
-        if (incomingParam instanceof TraineeshipPage){
-            TraineeshipPage traineeshipPage = (TraineeshipPage) incomingParam;
+        if (pageName.equals("TraineeshipPage")){
+            TraineeshipPage traineeshipPage = new TraineeshipPage();
             traineeshipPage.open()
                     .checkImageVisibilityInHeroBlock()
                     .checkQuoteNameInHeroBlock(name)
                     .checkQuoteTextInHeroBlock(expectedText);
         }
 
-        if (incomingParam instanceof SalesInternshipPage){
-            SalesInternshipPage salesInternshipPage = (SalesInternshipPage) incomingParam;
+        if (pageName.equals("SalesInternshipPage")){
+            SalesInternshipPage salesInternshipPage = new SalesInternshipPage();
             salesInternshipPage.open()
                     .checkImageVisibilityInHeroBlock()
                     .checkQuoteNameInHeroBlock(name)
@@ -109,8 +109,8 @@ public class WebTests extends BaseTest {
     }
     private static Stream<Arguments> generateDataCheckSliderArea() {
         return Stream.of(
-                Arguments.of(new MainPage(),"Vasili Fedzkin (24 years old)","After joining Andersen, I saw straight away that it's a world-class team. Everything is at a high level here: projects, tech stack, and, of course, working conditions!"),
-                Arguments.of(new TraineeshipPage(),"Ilya Matantsev (28 years old)","Andersen offers excellent career opportunities. Here, you can find everything you need for growth: interesting projects and a strong team!"),
-                Arguments.of(new SalesInternshipPage(),"Valentin Kuzmenko","Valentin is the Head of our Commercial Department with a remarkable track record. His belief is that only practice makes perfect and hard work rewards."));
+                Arguments.of("MainPage","Vasili Fedzkin (24 years old)","After joining Andersen, I saw straight away that it's a world-class team. Everything is at a high level here: projects, tech stack, and, of course, working conditions!"),
+                Arguments.of("TraineeshipPage","Ilya Matantsev (28 years old)","Andersen offers excellent career opportunities. Here, you can find everything you need for growth: interesting projects and a strong team!"),
+                Arguments.of("SalesInternshipPage","Valentin Kuzmenko","Valentin is the Head of our Commercial Department with a remarkable track record. His belief is that only practice makes perfect and hard work rewards."));
     }
 }

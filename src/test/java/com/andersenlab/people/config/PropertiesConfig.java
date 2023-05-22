@@ -8,15 +8,20 @@ import static org.aeonbits.owner.Config.*;
 
 public class PropertiesConfig {
 
-    public static final PropertiesInterface PROP = ConfigFactory.create(PropInterfaceTest.class, System.getProperties());
+    private static Class<? extends PropertiesInterface> getPropertySource() {
+        String env = System.getProperty("env");
+        if (env == null || env.equals("null")) {
+            return PropInterfaceTest.class;
+        } else if (env.equals("test")) {
+            return PropInterfaceTest.class;
+        } else {
+            throw new RuntimeException("Invalid value for system property 'env'! Expected one of:[null, 'test']");
+        }
+    }
+    public static final PropertiesInterface PROP = ConfigFactory.create(getPropertySource(), System.getProperties());
 
     @LoadPolicy(LoadType.MERGE)
-    @Config.Sources({
-            "system:properties",
-            "classpath:${env}.properties",
-            "file:~/${env}.properties",
-            "file:./${env}.properties"
-    })
+    @Sources({"system:properties", "classpath:test.properties"})
     interface PropInterfaceTest extends PropertiesConfig.PropertiesInterface {
     }
 
@@ -47,6 +52,7 @@ public class PropertiesConfig {
         @Key("webRemoteUrl")
         String getRemoteUrl();
 
+        @DefaultValue("false")
         @Key("webIsHeadless")
         Boolean isHeadless();
 
