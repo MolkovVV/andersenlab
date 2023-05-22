@@ -1,6 +1,5 @@
 package com.andersenlab.people.tests.web;
 
-import com.andersenlab.people.tests.BaseTest;
 import com.andersenlab.people.pages.MainPage;
 import com.andersenlab.people.pages.Page;
 import com.andersenlab.people.pages.SalesInternshipPage;

@@ -18,7 +18,6 @@ public class Specification {
             .contentType(ContentType.JSON)
             .baseUri(PropertiesConfig.PROP.getApiBaseUrl());
 
-
     public static ResponseSpecification responseSpecification = new ResponseSpecBuilder()
             .log(LogDetail.BODY)
             .log(LogDetail.STATUS)
